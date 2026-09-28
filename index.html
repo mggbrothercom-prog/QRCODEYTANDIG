@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Verification</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:linear-gradient(135deg,#050505,#191919);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.card{
+    width:100%;
+    max-width:430px;
+    background:#121212;
+    border:1px solid #333;
+    border-radius:22px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 0 35px rgba(0,0,0,.7);
+}
+
+h1{
+    margin:0 0 8px;
+    font-size:28px;
+}
+
+.subtitle{
+    color:#aaa;
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.qr-box{
+    background:white;
+    padding:10px;
+    border-radius:16px;
+    display:inline-block;
+}
+
+.qr-box img{
+    width:280px;
+    height:280px;
+    display:block;
+    object-fit:contain;
+}
+
+.info{
+    color:#ddd;
+    font-size:14px;
+    line-height:1.5;
+    margin:20px 0 14px;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    background:#202020;
+    color:white;
+    border:1px solid #444;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+}
+
+input:focus{
+    border-color:#168cff;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    margin-top:12px;
+    border:0;
+    border-radius:12px;
+    background:#168cff;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0876dc;
+}
+
+.success{
+    display:none;
+    margin-top:14px;
+    padding:12px;
+    border-radius:10px;
+    background:#123d22;
+    color:#72ff9b;
+    font-size:14px;
+}
+
+.telegram{
+    display:block;
+    margin-top:15px;
+    padding:14px;
+    border-radius:12px;
+    background:#229ed9;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.telegram.two{
+    background:#333;
+}
+
+.note{
+    margin-top:20px;
+    padding:15px;
+    border-radius:12px;
+    background:#211616;
+    border:1px solid #593030;
+    color:#ffb4b4;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.note-title{
+    color:#fff;
+    font-weight:bold;
+    font-size:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>💳 Payment</h1>
+
+    <div class="subtitle">
+        Scan QR & complete your payment
+    </div>
+
+    <!-- YOUR QR CODE -->
+    <div class="qr-box">
+        <img
+            src="https://res.cloudinary.com/dihj6dmbb/image/upload/v1790595289/quickurl/img-20260928-wa0002_1790595288710.jpg"
+            alt="Payment QR Code">
+    </div>
+
+    <div class="info">
+        Payment complete karne ke baad
+        <b>UTR / Transaction ID</b> neeche enter karein.
+    </div>
+
+    <input
+        id="utr"
+        type="text"
+        placeholder="Enter UTR Number"
+        autocomplete="off"
+    >
+
+    <button onclick="submitUTR()">
+        ✅ Submit UTR
+    </button>
+
+    <div class="success" id="success">
+        ✅ UTR submitted successfully!
+    </div>
+
+    <a
+        class="telegram"
+        href="https://t.me/Preniumappseling"
+        target="_blank">
+        ✈️ Telegram @Preniumappseling
+    </a>
+
+    <a
+        class="telegram two"
+        href="https://t.me/Brotherrealh"
+        target="_blank">
+        ✈️ Telegram @Brotherrealh
+    </a>
+
+    <!-- NOTE -->
+    <div class="note">
+        <div class="note-title">📝 NOTE</div>
+        <br>
+        Fake Payment ❌ Ban<br>
+        Edit Payment ❌ Ban ⛔
+        <br><br>
+        Pls Telegram par payment ka screenshot bhej dein.
+    </div>
+
+</div>
+
+<script>
+function submitUTR(){
+
+    const utr = document
+        .getElementById("utr")
+        .value
+        .trim();
+
+    if(utr === ""){
+        alert("Please enter your UTR number.");
+        return;
+    }
+
+    if(utr.length < 4){
+        alert("Please enter a valid UTR number.");
+        return;
+    }
+
+    localStorage.setItem("payment_utr", utr);
+
+    document
+        .getElementById("success")
+        .style.display = "block";
+}
+</script>
+
+</body>
+</html>
